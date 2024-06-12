@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="px-10 pt-10 space-y-10">
       <fieldset>
-        <legend className="pb-4">设置布局方式:</legend>
+        <legend className="pb-4">设置布局方式：</legend>
         <div className="flex space-x-2">
           {LAYOUT_TYPE.map((t) => (
             <div key={t} className="flex space-x-2">
@@ -44,7 +44,7 @@ function App() {
       </fieldset>
 
       <div>
-        <p className="pb-4">顺序 (拖拽下方元素以排序):</p>
+        <p className="pb-4">设置顺序 (拖拽下方元素以排序)：</p>
         <SortableList onSortEnd={onSortEnd} className="flex space-x-2">
           {layoutSettings.order.map((item) => (
             <SortableItem key={item}>
@@ -75,7 +75,7 @@ function App() {
       </div>
 
       <div>
-        <p>数据结构</p>
+        <p>数据结构：</p>
         <pre>{JSON.stringify(layoutSettings, null, 2)}</pre>
       </div>
     </div>
