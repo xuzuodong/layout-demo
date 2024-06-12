@@ -20,6 +20,8 @@ function App() {
 
   return (
     <div className="px-10 py-10 space-y-10">
+      <p className="text-gray-500 text-sm">TIP: 调整窗口大小至 &lt; 600px 以查看手机端响应式布局</p>
+
       <fieldset>
         <legend className="pb-4">设置布局方式：</legend>
         <div className="flex space-x-2">
