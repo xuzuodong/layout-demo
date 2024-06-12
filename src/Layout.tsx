@@ -36,8 +36,8 @@ const Flex1Block = ({ children }: PropsWithChildren) => (
 export const Layout: FC<{
   type: LayoutType;
   children: [ReactNode, ReactNode, ReactNode];
-  className?: string;
-}> = ({ type, children, className }) => {
+  containerClassName?: string;
+}> = ({ type, children, containerClassName: className }) => {
   const Layouts: Record<LayoutType[number], ReactNode> = {
     "111": (
       <div className={className}>
@@ -48,28 +48,28 @@ export const Layout: FC<{
     ),
     "21": (
       <div className={className}>
-        <div className="flex">
+        <div className="flex flex-col sm:flex-row">
           <Flex1Block>{children[0]}</Flex1Block>
           <Flex1Block>{children[1]}</Flex1Block>
         </div>
-        <div className="flex">
+        <div>
           <FullWidthBlock>{children[2]}</FullWidthBlock>
         </div>
       </div>
     ),
     "12": (
       <div className={className}>
-        <div className="flex">
+        <div>
           <FullWidthBlock>{children[0]}</FullWidthBlock>
         </div>
-        <div className="flex">
+        <div className="flex flex-col sm:flex-row">
           <Flex1Block>{children[1]}</Flex1Block>
           <Flex1Block>{children[2]}</Flex1Block>
         </div>
       </div>
     ),
     "3": (
-      <div className={`flex ${className}`}>
+      <div className={`flex flex-col sm:flex-row ${className}`}>
         <Flex1Block>{children[0]}</Flex1Block>
         <Flex1Block>{children[1]}</Flex1Block>
         <Flex1Block>{children[2]}</Flex1Block>

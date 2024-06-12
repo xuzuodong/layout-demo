@@ -19,7 +19,7 @@ function App() {
   };
 
   return (
-    <div className="px-10 pt-10 space-y-10">
+    <div className="px-10 py-10 space-y-10">
       <fieldset>
         <legend className="pb-4">设置布局方式：</legend>
         <div className="flex space-x-2">
@@ -59,12 +59,12 @@ function App() {
       </div>
 
       <div>
-        <p>渲染结果：</p>
-        <Layout type={layoutSettings.type} className="w-400px bg-slate-50">
+        <p className="pb-4">渲染结果：</p>
+        <Layout type={layoutSettings.type} containerClassName="w-400px bg-slate-50">
           {
             layoutSettings.order.map((item) => (
               <div
-                className={`min-w-[100px] h-32 flex justify-center items-center ${blockBgColors[item]}`}
+                className={`min-w-[100px] min-h-32 flex justify-center items-center ${blockBgColors[item]}`}
                 key={item}
               >
                 <p>{item}</p>
@@ -75,7 +75,7 @@ function App() {
       </div>
 
       <div>
-        <p>数据结构：</p>
+        <p className="pb-4">数据结构：</p>
         <pre>{JSON.stringify(layoutSettings, null, 2)}</pre>
       </div>
     </div>
