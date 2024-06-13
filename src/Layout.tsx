@@ -53,7 +53,7 @@ export const Layout: FC<{
       <>
         <div
           className={`flex flex-1 ${
-            direction === "horizontal" ? "flex-col sm:flex-row" : "sm:flex-col"
+            direction === "horizontal" ? "flex-col sm:flex-row" : "flex-col"
           }`}
         >
           <Flex1Block>{children[0]}</Flex1Block>
@@ -71,7 +71,7 @@ export const Layout: FC<{
         </div>
         <div
           className={`flex flex-1 ${
-            direction === "horizontal" ? "flex-col sm:flex-row" : "sm:flex-col"
+            direction === "horizontal" ? "flex-col sm:flex-row" : "flex-col"
           }`}
         >
           <Flex1Block>{children[1]}</Flex1Block>
@@ -83,7 +83,7 @@ export const Layout: FC<{
       <>
         <div
           className={`flex flex-1 ${
-            direction === "horizontal" ? "flex-col sm:flex-row" : "sm:flex-col"
+            direction === "horizontal" ? "flex-col sm:flex-row" : "flex-col"
           }`}
         >
           <Flex1Block>{children[0]}</Flex1Block>
@@ -96,7 +96,7 @@ export const Layout: FC<{
   return (
     <div
       className={`flex ${
-        direction === "horizontal" ? "flex-col" : "flex-row"
+        direction === "horizontal" ? "flex-col" : "flex-col sm:flex-row"
       } ${containerClassName || ""}`}
     >
       {Layouts[type]}
