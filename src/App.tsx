@@ -11,7 +11,7 @@ import SortableList, { SortableItem } from "react-easy-sort";
 import { Layout } from "./Layout";
 
 function App() {
-  const [layoutSettings, SetLayoutSettings] = useState<LayoutSettings>({
+  const [layoutSettings, setLayoutSettings] = useState<LayoutSettings>({
     type: "111",
     order: ["Text", "Image", "List"],
     direction: "horizontal",
@@ -23,7 +23,7 @@ function App() {
   };
 
   const onSortEnd = (oldIndex: number, newIndex: number) => {
-    SetLayoutSettings((ls) => ({
+    setLayoutSettings((ls) => ({
       ...ls,
       order: arrayMoveImmutable(ls.order, oldIndex, newIndex),
     }));
@@ -47,7 +47,7 @@ function App() {
                 value={d}
                 checked={d === layoutSettings.direction}
                 onChange={() => {
-                  SetLayoutSettings((ls) => ({ ...ls, direction: d }));
+                  setLayoutSettings((ls) => ({ ...ls, direction: d }));
                 }}
               />
               <label htmlFor={d}>
@@ -70,7 +70,7 @@ function App() {
                 value={t}
                 checked={t === layoutSettings.type}
                 onChange={() => {
-                  SetLayoutSettings((ls) => ({ ...ls, type: t }));
+                  setLayoutSettings((ls) => ({ ...ls, type: t }));
                 }}
               />
               <label htmlFor={t} className="bg-indigo-50 p-2">
