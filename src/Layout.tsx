@@ -7,7 +7,7 @@ import {
   cloneElement,
   isValidElement,
 } from "react";
-import { LayoutType } from "./types";
+import { LayoutDirection, LayoutType } from "./types";
 
 const ChildrenWithClassName = ({
   children,
@@ -25,8 +25,10 @@ const ChildrenWithClassName = ({
   });
 };
 
-const FullWidthBlock = ({ children }: PropsWithChildren) => (
-  <ChildrenWithClassName className="w-full">{children}</ChildrenWithClassName>
+const FilledSizeBlock = ({ children }: PropsWithChildren) => (
+  <ChildrenWithClassName className="w-full h-full">
+    {children}
+  </ChildrenWithClassName>
 );
 
 const Flex1Block = ({ children }: PropsWithChildren) => (
@@ -35,47 +37,69 @@ const Flex1Block = ({ children }: PropsWithChildren) => (
 
 export const Layout: FC<{
   type: LayoutType;
+  direction: LayoutDirection;
   children: [ReactNode, ReactNode, ReactNode];
   containerClassName?: string;
-}> = ({ type, children, containerClassName: className }) => {
+}> = ({ type, direction, children, containerClassName }) => {
   const Layouts: Record<LayoutType[number], ReactNode> = {
     "111": (
-      <div className={className}>
+      <>
         <Flex1Block>{children[0]}</Flex1Block>
         <Flex1Block>{children[1]}</Flex1Block>
         <Flex1Block>{children[2]}</Flex1Block>
-      </div>
+      </>
     ),
     "21": (
-      <div className={className}>
-        <div className="flex flex-col sm:flex-row">
+      <>
+        <div
+          className={`flex flex-1 ${
+            direction === "horizontal" ? "flex-col sm:flex-row" : "sm:flex-col"
+          }`}
+        >
           <Flex1Block>{children[0]}</Flex1Block>
           <Flex1Block>{children[1]}</Flex1Block>
         </div>
-        <div>
-          <FullWidthBlock>{children[2]}</FullWidthBlock>
+        <div className="flex-1">
+          <FilledSizeBlock>{children[2]}</FilledSizeBlock>
         </div>
-      </div>
+      </>
     ),
     "12": (
-      <div className={className}>
-        <div>
-          <FullWidthBlock>{children[0]}</FullWidthBlock>
+      <>
+        <div className="flex-1">
+          <FilledSizeBlock>{children[0]}</FilledSizeBlock>
         </div>
-        <div className="flex flex-col sm:flex-row">
+        <div
+          className={`flex flex-1 ${
+            direction === "horizontal" ? "flex-col sm:flex-row" : "sm:flex-col"
+          }`}
+        >
           <Flex1Block>{children[1]}</Flex1Block>
           <Flex1Block>{children[2]}</Flex1Block>
         </div>
-      </div>
+      </>
     ),
     "3": (
-      <div className={`flex flex-col sm:flex-row ${className}`}>
-        <Flex1Block>{children[0]}</Flex1Block>
-        <Flex1Block>{children[1]}</Flex1Block>
-        <Flex1Block>{children[2]}</Flex1Block>
-      </div>
+      <>
+        <div
+          className={`flex flex-1 ${
+            direction === "horizontal" ? "flex-col sm:flex-row" : "sm:flex-col"
+          }`}
+        >
+          <Flex1Block>{children[0]}</Flex1Block>
+          <Flex1Block>{children[1]}</Flex1Block>
+          <Flex1Block>{children[2]}</Flex1Block>
+        </div>
+      </>
     ),
   };
-
-  return Layouts[type];
+  return (
+    <div
+      className={`flex ${
+        direction === "horizontal" ? "flex-col" : "flex-row"
+      } ${containerClassName || ""}`}
+    >
+      {Layouts[type]}
+    </div>
+  );
 };
